@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.9-dev"  # 3.9 development branch
+  - "3.7.3-dev"  # 3.9 development branch
 # command to install dependencies
 install:
   - pip install -r requirements.txt
