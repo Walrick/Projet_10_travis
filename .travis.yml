@@ -1,10 +1,20 @@
 language: python
 python:
-  - "3.7-dev"  # 3.7.3 version ionos
+  - "3.8-dev"  # 3.8.5 for ionos
 # 3.9 development branch
+
+# use mysql
+services:
+  - mysql
+
+# init database
+before_install:
+  - mysql -e 'CREATE DATABASE myapp_test;'
+
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+
 # command to run tests
 script:
   - python manage.py test
