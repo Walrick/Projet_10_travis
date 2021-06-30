@@ -231,7 +231,7 @@ class TestFunctional(TestCase):
         options.add_argument("--disable-default-apps")
         options.binary_location = '/usr/bin/chromium-browser'
 
-        path = "driver/linux/chromedriver"
+        path = "/home/travis/virtualenv/python3.8-dev/chromedriver"
 
 
         # Create browser
