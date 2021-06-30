@@ -226,9 +226,11 @@ class TestFunctional(TestCase):
         options = Options()
         options.add_argument("start-maximized")
 
+        path = "driver/chromedriver.exe"
+
         # Create browser
         self.browser = webdriver.Chrome(
-            executable_path="driver/chromedriver", options=options
+            executable_path=path, options=options
         )
         time.sleep(1)
         self.browser.get("http://127.0.0.1:8000")
@@ -254,7 +256,7 @@ class TestFunctional(TestCase):
         search = self.get_id("search_bar")
         time.sleep(1)
         search.send_keys("pain" + Keys.RETURN)
-
+        time.sleep(1)
         assert (
             self.browser.current_url == "http://127.0.0.1:8000/food/search?search=pain"
         )
