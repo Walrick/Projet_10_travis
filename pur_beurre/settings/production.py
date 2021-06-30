@@ -4,8 +4,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-#ALLOWED_HOSTS = ["217.160.27.219"]
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", ["217.160.27.219"])
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
