@@ -23,9 +23,9 @@ install:
 before_script:
   - wget https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.8-dev/
+  - python manage.py collectstatic
+  - python manage.py runserver
 
 # command to run tests
 script:
-  - python manage.py collectstatic
-  - python manage.py runserver
   - python manage.py test
