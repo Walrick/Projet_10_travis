@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 import json
+import os
 
 from accounts.models import create_user
 from mock import MagicMock, patch, Mock
@@ -230,8 +231,11 @@ class TestFunctional(TestCase):
         options.add_argument("--no-first-run")
         options.add_argument("--disable-default-apps")
 
-        path = "/home/travis/virtualenv/python3.8-dev/chromedriver"
-        #path = "driver/window/chromedriver.exe"
+        travis = os.environ.get("TRAVIS", False)
+        if travis == "TRUE":
+            path = "/home/travis/virtualenv/python3.8-dev/chromedriver"
+        else:
+            path = "driver/window/chromedriver.exe"
 
 
         # Create browser
