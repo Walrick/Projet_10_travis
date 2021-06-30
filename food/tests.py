@@ -227,7 +227,7 @@ class TestFunctional(TestCase):
         options.add_argument("start-maximized")
         options.add_argument("--no - sandbox")
 
-        path = "driver/chromedriver.exe"
+        path = "driver/linux/chromedriver.exe"
 
         # Create browser
         self.browser = webdriver.Chrome(
