@@ -225,6 +225,7 @@ class TestFunctional(TestCase):
     def setUp(self):
         options = Options()
         options.add_argument("start-maximized")
+        options.add_argument("--no - sandbox")
 
         path = "driver/chromedriver.exe"
 
