@@ -225,7 +225,11 @@ class TestFunctional(TestCase):
     def setUp(self):
         options = Options()
         options.add_argument("start-maximized")
-        options.add_argument("--no - sandbox")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--no-default-browser-check")  # Overrides default choices
+        options.add_argument("--no-first-run")
+        options.add_argument("--disable-default-apps")
+        options.binary_location = '/usr/bin/chromium-browser'
 
         path = "/home/travis/build/Walrick/Projet_10_travis/driver/linux/chromedriver"
 
