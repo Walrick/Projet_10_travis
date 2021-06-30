@@ -27,4 +27,5 @@ before_script:
 # command to run tests
 script:
   - python manage.py collectstatic
+  - python manage.py runserver
   - python manage.py test
