@@ -23,8 +23,6 @@ install:
 before_script:
   - wget https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.8-dev/
-  - export CHROME_BIN=chromium-browser
-  - sleep 3
 
 # command to run tests
 script:
