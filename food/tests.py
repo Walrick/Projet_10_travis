@@ -235,8 +235,7 @@ class TestFunctional(TestCase):
         if travis == "TRUE":
             path = "/home/travis/virtualenv/python3.8-dev/chromedriver"
         else:
-            path = "driver/window/chromedriver.exe"
-
+            path = "driver/linux/chromedriver"
 
         # Create browser
         self.browser = webdriver.Chrome(
