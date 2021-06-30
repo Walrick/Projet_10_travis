@@ -232,7 +232,7 @@ class TestFunctional(TestCase):
         options.binary_location = '/usr/bin/chromium-browser'
 
         path = "/home/travis/virtualenv/python3.8-dev/chromedriver"
-
+        # change path
 
         # Create browser
         self.browser = webdriver.Chrome(
