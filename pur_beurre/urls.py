@@ -16,14 +16,19 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.urls import path
 
 import food.views as views
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
 
 urlpatterns = [
     url(r"^$", views.index),
     url(r"^food/", include("food.urls")),
     url(r"^admin/", admin.site.urls),
     url(r"^accounts/", include("accounts.urls")),
+    path('sentry-debug/', trigger_error),
 ]
 
 if settings.DEBUG:
@@ -32,3 +37,6 @@ if settings.DEBUG:
     urlpatterns = [
         url(r"^__debug__/", include(debug_toolbar.urls)),
     ] + urlpatterns
+
+
+
