@@ -238,7 +238,8 @@ class TestFunctional(TestCase):
         state = os.environ.get("STATE", False)
         if state == "LOCAL":
             path = "driver/window/chromedriver"
-        else:
+
+        if state == "SERVER":
             path = "driver/linux/chromedriver"
 
         # Create browser
