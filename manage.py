@@ -12,8 +12,12 @@ def main():
     except:
         print("no fichier .env")
 
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pur_beurre.settings.production')
-    #os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pur_beurre.settings.development')
+    state = os.environ.get("STATE", False)
+    if state == "LOCAL":
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pur_beurre.settings.development')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pur_beurre.settings.production')
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

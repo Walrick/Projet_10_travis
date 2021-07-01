@@ -76,7 +76,6 @@ class Command(BaseCommand):
                                 item = Product.objects.get(
                                     id_openfoodfact=products["id"]
                                 )
-                                item.category.add(c)
                             except:
                                 item = None
 
@@ -164,6 +163,11 @@ class Command(BaseCommand):
                                 )
                                 p.save()
                                 p.category.add(c)
+
+                            else:
+                                duplicate = item.category.filter(id = c.pk)
+                                if len(duplicate) == 0:
+                                    item.category.add(c)
 
                 print("update terminée")
 

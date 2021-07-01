@@ -175,7 +175,7 @@ class CommandTest(TestCase):
                     "id": 5,
                 }
             ],
-            "count": 1,
+            "count": 2,
         }
         mock_urlopen.return_value = BytesIO(json.dumps(result).encode())
         out = StringIO()
@@ -234,6 +234,10 @@ class TestFunctional(TestCase):
         travis = os.environ.get("TRAVIS", False)
         if travis == "TRUE":
             path = "/home/travis/virtualenv/python3.8-dev/chromedriver"
+
+        state = os.environ.get("STATE", False)
+        if state == "LOCAL":
+            path = "driver/window/chromedriver"
         else:
             path = "driver/linux/chromedriver"
 
