@@ -65,18 +65,13 @@ class Command(BaseCommand):
                     for products in response["products"]:
 
                         if "id" in products:
-                            id_validation = True
-                        else:
-                            id_validation = False
-
-                        if id_validation:
 
                             # check if products exist
                             try:
                                 item = Product.objects.get(
                                     id_openfoodfact=products["id"]
                                 )
-                            except:
+                            except Product.DoesNotExist:
                                 item = None
 
                             if item is None:
@@ -165,8 +160,7 @@ class Command(BaseCommand):
                                 p.category.add(c)
 
                             else:
-                                duplicate = item.category.filter(id = c.pk)
-                                if len(duplicate) == 0:
+                                if not item.category.filter(id = c.pk).exists():
                                     item.category.add(c)
 
                 print("update terminée")
