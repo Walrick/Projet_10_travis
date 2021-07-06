@@ -3,38 +3,25 @@ from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+travis = os.environ.get("TRAVIS", False)
+if travis == "TRUE":
+    ALLOWED_HOSTS = ["127.0.0.1"]
+else:
+    ALLOWED_HOSTS = ["217.160.27.219"]
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-travis = os.environ.get("TRAVIS", False)
-# Test mode for Travis
-if travis == "TRUE":
-    ALLOWED_HOSTS = ["127.0.0.1"]
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": os.environ.get("myapp_test"),
-            "USER": os.environ.get("travis"),
-            "PASSWORD": os.environ.get(""),
-            "HOST": os.environ.get("localhost"),
-            "PORT": os.environ.get("3306"),
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": os.environ.get("NAME_SERVER", "myapp_test"),
+        "USER": os.environ.get("USER_SERVER", "travis"),
+        "PASSWORD": os.environ.get("PASSWORD_SERVER", ""),
+        "HOST": os.environ.get("HOST_SERVER", "localhost"),
+        "PORT": os.environ.get("PORT_SERVER", "3306"),
     }
-# Product mode
-else:
-    ALLOWED_HOSTS = ["217.160.27.219"]
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": os.environ.get("NAME_SERVER"),
-            "USER": os.environ.get("USER_SERVER"),
-            "PASSWORD": os.environ.get("PASSWORD_SERVER"),
-            "HOST": os.environ.get("HOST_SERVER"),
-            "PORT": os.environ.get("PORT_SERVER"),
-        }
-    }
-
+}
 
 # Static files settings
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
