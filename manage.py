@@ -7,10 +7,9 @@ import sys
 def main():
     """Run administrative tasks."""
 
-    try:
+    travis = os.environ.get("TRAVIS", False)
+    if travis != "TRUE":
         env_setting()
-    except:
-        print("no fichier .env")
 
     state = os.environ.get("STATE", False)
     if state == "LOCAL":

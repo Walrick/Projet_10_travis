@@ -16,7 +16,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 sentry_sdk.init(
-    dsn="https://9106a743ab694e6cadd22bae9fece3f1@o901695.ingest.sentry.io/5842349",
+    dsn=os.environ.get("SENTRY"),
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
