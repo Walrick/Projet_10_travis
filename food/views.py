@@ -27,7 +27,7 @@ def search(request):
     s = request.GET.get("search", None)
     try:
         result = Product.objects.filter(name__icontains=s)
-    except:
+    except Product.DoesNotExist:
         result = None
     if len(result) == 0:
         result = None
@@ -42,7 +42,7 @@ def product(request, id):
 
     try:
         result = Product.objects.get(id=id)
-    except:
+    except Product.DoesNotExist:
         result = None
 
     dic = {"product": result}
@@ -55,7 +55,7 @@ def substitute(request, id):
     data = {}
     try:
         product = Product.objects.get(id=id)
-    except:
+    except Product.DoesNotExist:
         product = None
     data["product"] = product
     num_nutri_prod = list_nutri[product.nutrition_grade_fr]
@@ -68,7 +68,7 @@ def substitute(request, id):
                 num_prod = list_nutri[p.nutrition_grade_fr]
                 if num_prod <= num_nutri_prod:
                     list_product.append(p)
-        except:
+        except Product.DoesNotExist:
             p = None
 
     paginator = Paginator(list_product, 21)
@@ -106,7 +106,7 @@ def my_product(request, id):
             s = Product.users.get(id=current_user.id)
             data["product"] = s
             data["product_found"] = True
-        except:
+        except Product.DoesNotExist:
             p.users.add(current_user)
             data["product"] = p
             data["product_new"] = True
